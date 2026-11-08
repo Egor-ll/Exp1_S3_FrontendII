@@ -1,5 +1,5 @@
 
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 
 function MenuInventario() {
     const clasesEnlace = ({ isActive }) =>
@@ -31,6 +31,7 @@ function MenuInventario() {
             >
                 Inventario
             </NavLink>
+            <NavLink to="/carrito" className={clasesEnlace}>Carrito</NavLink>
         </nav>
     );
 }

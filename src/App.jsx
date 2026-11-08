@@ -3,7 +3,7 @@ import {
     Navigate,
     Route,
     Routes,
-} from 'react-router-dom';
+} from 'react-router';
 
 import MenuInferior from './componentes/MenuInferior.jsx';
 import MenuInventario from './componentes/MenuInventario.jsx';
@@ -14,8 +14,14 @@ import PreguntasFrecuentes from './pages/PreguntasFrecuentes.jsx';
 import AgregarArticulo from './pages/AgregarArticulo.jsx';
 import Inventario from './pages/Inventario.jsx';
 import NotFound from './pages/NotFound.jsx';
+import DetalleArticulo from './pages/DetalleArticulo.jsx';
+import Carrito from './pages/Carrito.jsx';
+import { useInventario } from './context/useInventario.js';
+import { Link } from 'react-router';
 
 function App() {
+    const { carrito } = useInventario();
+    const cantidadCarrito = carrito.reduce((total, item) => total + item.cantidad, 0);
     return (
         <div className="flex min-h-screen flex-col bg-[#f4f7f4] text-[#24352c]">
 
@@ -38,9 +44,9 @@ function App() {
                     </div>
                 </div>
 
-                <span className="rounded-full bg-[#e9f5ed] px-4 py-2 text-sm font-semibold text-[#176b45]">
-                    Sistema de gestión
-                </span>
+                <Link className="rounded-full bg-[#e9f5ed] px-4 py-2 text-sm font-semibold text-[#176b45] no-underline" to="/carrito">
+                    Carrito ({cantidadCarrito})
+                </Link>
             </header>
 
             {/* Navegación principal */}
@@ -70,6 +76,9 @@ function App() {
                         path="/inventario"
                         element={<Inventario />}
                     />
+
+                    <Route path="/articulo/:id" element={<DetalleArticulo />} />
+                    <Route path="/carrito" element={<Carrito />} />
 
                     <Route
                         path="/inicio"

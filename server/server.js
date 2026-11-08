@@ -15,6 +15,7 @@ const archivoProductos = path.join(
     'data',
     'productos.json'
 );
+const TEXTO_VALIDO = /^[\p{L}\p{M}0-9][\p{L}\p{M}0-9 .,'’()-]{0,79}$/u;
 
 app.use(express.json());
 
@@ -47,8 +48,8 @@ app.post('/api/productos', async (req, res) => {
         const { nombre, marca, tipo, stock } = req.body;
 
         if (
-            typeof nombre !== 'string' || !nombre.trim() ||
-            typeof marca !== 'string' || !marca.trim() ||
+            typeof nombre !== 'string' || !TEXTO_VALIDO.test(nombre.trim()) ||
+            typeof marca !== 'string' || !TEXTO_VALIDO.test(marca.trim()) ||
             typeof tipo !== 'string' || !tipo.trim() ||
             !Number.isInteger(stock) || stock < 0
         ) {
@@ -170,6 +171,29 @@ app.patch('/api/productos/:id/descontar', async (req, res) => {
         res.status(500).json({
             mensaje: 'No se pudo descontar el stock.'
         });
+    }
+});
+
+// Reponer unidades al stock de un artículo
+app.patch('/api/productos/:id/reponer', async (req, res) => {
+    try {
+        const id = Number(req.params.id);
+        const { cantidad } = req.body;
+        if (!Number.isInteger(id) || id <= 0) {
+            return res.status(400).json({ mensaje: 'Identificador de producto inválido.' });
+        }
+        if (!Number.isInteger(cantidad) || cantidad <= 0) {
+            return res.status(400).json({ mensaje: 'La cantidad a reponer debe ser un entero mayor que cero.' });
+        }
+        const productos = await leerProductos();
+        const producto = productos.find(item => item.id === id);
+        if (!producto) return res.status(404).json({ mensaje: 'Producto no encontrado.' });
+        producto.stock += cantidad;
+        await guardarProductos(productos);
+        return res.json({ mensaje: 'Stock repuesto correctamente.', producto });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ mensaje: 'No se pudo reponer el stock.' });
     }
 });
 

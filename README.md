@@ -1,8 +1,8 @@
-# Supermercado – Sistema de Gestión de Inventario
+# Supermercado – Sistema de Gestión de Inventario y Carrito
 
 Aplicación web desarrollada con **React y Vite** para la administración de inventario de un supermercado. Permite registrar artículos, consultar existencias, controlar el stock y gestionar los productos mediante una interfaz moderna y adaptable.
 
-El proyecto utiliza un backend desarrollado con **Node.js y Express**, encargado de administrar los datos y mantener la persistencia de los productos en un archivo JSON.
+El proyecto utiliza un backend desarrollado con **Node.js y Express**, encargado de administrar los datos y mantener la persistencia de los productos en un archivo JSON. El carrito descuenta y repone unidades a través de esta API.
 
 ---
 
@@ -12,11 +12,11 @@ El proyecto utiliza un backend desarrollado con **Node.js y Express**, encargado
 |---|---|
 | Proyecto | Sistema de Gestión de Inventario |
 | Módulo | Desarrollo Frontend II |
-| Semana | Semana 2 |
+| Semana | Semana 3 |
 | Frontend | React 19 |
 | Herramienta de desarrollo | Vite 8 |
 | Estilos | Tailwind CSS 4 |
-| Navegación | React Router DOM |
+| Navegación | React Router |
 | Backend | Node.js + Express |
 | Persistencia | Archivo JSON |
 | Lenguaje | JavaScript |
@@ -48,14 +48,22 @@ Desarrollar una aplicación web que permita gestionar el inventario de un superm
 - Identificación de artículos con stock bajo.
 - Descuento de unidades disponibles.
 - Eliminación de productos.
+- Filtrado por categoría y por stock bajo.
+- Acceso al detalle de cada artículo.
 
-### 4. Quiénes somos
+### 4. Detalle y carrito
+- Consulta del detalle de cada artículo.
+- Agregar productos al carrito respetando el stock disponible.
+- Aumentar o disminuir unidades desde el carrito con sincronización del inventario.
+- Persistencia del contenido del carrito en el navegador.
+
+### 5. Quiénes somos
 Página informativa que presenta el propósito del sistema y sus principales compromisos.
 
-### 5. Preguntas frecuentes
+### 6. Preguntas frecuentes
 Sección de ayuda que explica el funcionamiento general de la aplicación y el almacenamiento de los productos.
 
-### 6. Página de error 404
+### 7. Página de error 404
 Vista de error para las rutas que no existen, con una opción para regresar al inicio.
 
 ## Arquitectura del proyecto
@@ -80,8 +88,16 @@ supermercado/
 │
 ├── src/
 │   ├── componentes/
+│   │   ├── Hero.jsx
+│   │   ├── Alerta.jsx
+│   │   ├── FormularioArticulo.jsx
+│   │   ├── CamposArticulo.jsx
+│   │   ├── TablaProductos.jsx
+│   │   ├── FilaProducto.jsx
 │   │   ├── MenuInferior.jsx
 │   │   └── MenuInventario.jsx
+│   ├── utils/
+│   │   └── validaciones.js
 │   │
 │   ├── context/
 │   │   ├── InventarioContext.js
@@ -92,6 +108,8 @@ supermercado/
 │   │   ├── Home.jsx
 │   │   ├── AgregarArticulo.jsx
 │   │   ├── Inventario.jsx
+│   │   ├── DetalleArticulo.jsx
+│   │   ├── Carrito.jsx
 │   │   ├── QuienesSomos.jsx
 │   │   ├── PreguntasFrecuentes.jsx
 │   │   └── NotFound.jsx
@@ -116,7 +134,7 @@ supermercado/
 | React 19 | Construcción de interfaces mediante componentes. |
 | Vite 8 | Servidor de desarrollo y compilación. |
 | Tailwind CSS 4 | Diseño y estilos de la interfaz. |
-| React Router DOM 7 | Navegación entre páginas. |
+| React Router 7 | Navegación entre páginas. |
 | Node.js | Entorno de ejecución del backend. |
 | Express 5 | Creación de la API REST. |
 | JavaScript | Lógica de la aplicación. |
@@ -191,6 +209,7 @@ El backend proporciona los siguientes endpoints:
 | GET | `/api/productos` | Obtiene todos los productos. |
 | POST | `/api/productos` | Registra un nuevo producto. |
 | PATCH | `/api/productos/:id/descontar` | Descuenta unidades del stock. |
+| PATCH | `/api/productos/:id/reponer` | Repone unidades al stock. |
 | DELETE | `/api/productos/:id` | Elimina un producto. |
 
 ### Persistencia de datos
@@ -214,6 +233,8 @@ El contexto permite centralizar las operaciones principales:
 - Obtener los productos.
 - Agregar artículos.
 - Descontar unidades del stock.
+- Reponer unidades y sincronizar cambios del carrito.
+- Mantener el contenido del carrito en el almacenamiento local del navegador.
 - Eliminar productos.
 - Actualizar la información del inventario.
 
@@ -257,7 +278,7 @@ Durante el desarrollo se trabajaron los siguientes conceptos:
 - Desarrollo de interfaces utilizando React.
 - Creación y reutilización de componentes.
 - Administración del estado mediante Context API.
-- Implementación de rutas con React Router DOM.
+- Implementación de rutas con React Router.
 - Aplicación de estilos utilizando Tailwind CSS.
 - Integración de frontend con backend mediante API REST.
 - Validación de formularios.

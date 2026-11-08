@@ -1,5 +1,5 @@
 
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 
 function MenuInferior() {
     const clasesEnlace = ({ isActive }) =>

@@ -4,14 +4,14 @@
     "nombre": "Arroz",
     "marca": "Lider",
     "tipo": "Abarrotes",
-    "stock": 45
+    "stock": 41
   },
   {
     "id": 2,
     "nombre": "Leche",
     "marca": "Soprole",
     "tipo": "Lácteos",
-    "stock": 28
+    "stock": 25
   },
   {
     "id": 3,
@@ -25,21 +25,21 @@
     "nombre": "Aceite",
     "marca": "Sol",
     "tipo": "Abarrotes",
-    "stock": 6
+    "stock": 5
   },
   {
     "id": 5,
     "nombre": "Papa",
     "marca": "Sin especificar",
     "tipo": "Frutas y verduras",
-    "stock": 5
+    "stock": 1
   },
   {
     "id": 6,
     "nombre": "yoghurt",
     "marca": "Soprole",
     "tipo": "Lácteos",
-    "stock": 15
+    "stock": 11
   },
   {
     "id": 7,

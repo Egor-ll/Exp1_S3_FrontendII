@@ -8,6 +8,10 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
+    watch: {
+      // Express actualiza este archivo al sincronizar el stock; no es un módulo del frontend.
+      ignored: ['**/server/data/productos.json'],
+    },
     proxy: {
       '/api': {
         target: 'http://localhost:3000',
