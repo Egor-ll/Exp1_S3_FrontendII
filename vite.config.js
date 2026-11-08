@@ -2,7 +2,10 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // El frontend se publica bajo el nombre del repositorio en GitHub Pages.
+  // En desarrollo local se conserva la ruta raíz.
+  base: command === 'build' ? '/Exp1_S3_FrontendII/' : '/',
   plugins: [
     react(),
     tailwindcss(),
@@ -19,4 +22,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));
