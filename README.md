@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Supermercado – Sistema de Gestión de Inventario y Carrito
+=======
+Supermercado – Sistema de Gestión de Inventario y Carrito
+>>>>>>> b8d1898 (Completa actividad sumativa Semana 3)
 
 Aplicación web desarrollada con **React y Vite** para la administración de inventario de un supermercado. Permite registrar artículos, consultar existencias, controlar el stock y gestionar los productos mediante una interfaz moderna y adaptable.
 
@@ -16,7 +20,11 @@ El proyecto utiliza un backend desarrollado con **Node.js y Express**, encargado
 | Frontend | React 19 |
 | Herramienta de desarrollo | Vite 8 |
 | Estilos | Tailwind CSS 4 |
+<<<<<<< HEAD
 | Navegación | React Router |
+=======
+| Navegación | React Router 7 (`react-router`) |
+>>>>>>> b8d1898 (Completa actividad sumativa Semana 3)
 | Backend | Node.js + Express |
 | Persistencia | Archivo JSON |
 | Lenguaje | JavaScript |
@@ -155,7 +163,7 @@ Se recomienda utilizar una versión de Node.js compatible con las dependencias d
 ### 1. Clonar el repositorio
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+git clone https://github.com/Egor-ll/Exp1_S3_FrontendII.git
 ```
 
 Ingresar a la carpeta:
@@ -295,4 +303,8 @@ Proyecto académico desarrollado como parte del módulo **Desarrollo Frontend II
 ---
 
 *Sistema de Gestión de Inventario – Supermercado*  
+<<<<<<< HEAD
 *Desarrollo Frontend II | Semana 2*
+=======
+*Desarrollo Frontend II | Semana 3*
+>>>>>>> b8d1898 (Completa actividad sumativa Semana 3)
